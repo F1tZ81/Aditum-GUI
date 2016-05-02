@@ -1,20 +1,31 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AditumGUI
+namespace Aditum
 {
     public class Screen
     {
-        bool Transpaenrt { get; set; }
-        bool Active { get; set; }
-        bool CleanUp { get; set; }
+        public bool Transpaenrt { get; set; }
+        public bool Active { get; set; }
+        private bool CleanUp { get; set; }
 
-        int CurrentIndex { get; set; }
+        private int CurrentIndex { get; set; }
 
-        protected List<GuiElement> Elements { get; set; }
+        public GuiElement ActiveElement
+        {
+            get
+            {
+                foreach (GuiElement currentEle in Elements)
+                {
+                    if (currentEle.Active) return currentEle;
+                }
+
+                return null;
+            }
+        }
+
+        protected List<IContainer> Containers { get; set; }
 
         public Screen()
         {
@@ -61,6 +72,14 @@ namespace AditumGUI
             }
 
             return "none";
+        }
+
+        public void Draw(SpriteBatch batch, GameTime gameTime)
+        {
+            foreach(IContainer currentCon in Containers)
+            {
+                currentCon.Draw(batch, gameTime);
+            }
         }
     }
 }
