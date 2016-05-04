@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseElements\InteractiveImage.cs" />
+    <Compile Include="ElementInterfaces\IText.cs" />
     <Compile Include="GuiElement.cs" />
     <Compile Include="ElementInterfaces\IActivatable.cs" />
     <Compile Include="ElementInterfaces\IClickable.cs" />

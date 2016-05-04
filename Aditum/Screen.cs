@@ -9,6 +9,7 @@ namespace Aditum
         public bool Transpaenrt { get; set; }
         public bool Active { get; set; }
         private bool CleanUp { get; set; }
+        private List<GuiElement> elements;
 
         private int CurrentIndex { get; set; }
 
@@ -16,7 +17,7 @@ namespace Aditum
         {
             get
             {
-                foreach (GuiElement currentEle in Elements)
+                foreach (GuiElement currentEle in elements)
                 {
                     if (currentEle.Active) return currentEle;
                 }
@@ -35,12 +36,12 @@ namespace Aditum
 
             CurrentIndex = 0;
 
-            Elements = new List<GuiElement>();
+            elements = new List<GuiElement>();
         }
 
         public GuiElement GetElement (string id)
         {
-            foreach(GuiElement currentElement in Elements)
+            foreach(GuiElement currentElement in elements)
             {
                 if (currentElement.ID == id) return currentElement;
             }
@@ -55,7 +56,7 @@ namespace Aditum
 
         protected void ActivateElementViaIndex(int index)
         {
-            foreach (GuiElement currentElemet in Elements)
+            foreach (GuiElement currentElemet in elements)
             {
                 if (currentElemet.Index == index) currentElemet.Active = true;
             }
@@ -63,7 +64,7 @@ namespace Aditum
 
         protected string ReturnActiveElementID()
         {
-            foreach (GuiElement currentElement in Elements)
+            foreach (GuiElement currentElement in elements)
             {
                 if (currentElement.Active == true)
                 {
