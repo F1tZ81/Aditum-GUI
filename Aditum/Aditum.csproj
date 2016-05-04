@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseElements\InteractiveImage.cs" />
+    <Compile Include="BaseElements\TestElement.cs" />
+    <Compile Include="ElementInterfaces\IInnerRaster.cs" />
     <Compile Include="ElementInterfaces\IText.cs" />
     <Compile Include="GuiElement.cs" />
     <Compile Include="ElementInterfaces\IActivatable.cs" />

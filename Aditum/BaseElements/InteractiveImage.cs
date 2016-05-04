@@ -16,13 +16,15 @@ namespace Aditum.BaseElements
         public Texture2D SelectedImage { get; set; }
         public Rectangle BoundingBox { get; set; }
 
-        public InteractiveImage(IContainer conRef)
+        public InteractiveImage(IContainer conRef, Texture2D baseImage, Texture2D selectedImage)
             : base(conRef)
         {
-
+            BaseImage = baseImage;
+            SelectedImage = selectedImage;
+            BoundingBox = new Rectangle(ActualPosition.X, ActualPosition.Y, BaseImage.Bounds.Width, BaseImage.Height);
         }
 
-        public void Draw(SpriteBatch sb, GameTime gameTime)
+        public virtual void Draw(SpriteBatch sb, GameTime gameTime)
         {
             if(Visable)
             {
@@ -37,12 +39,12 @@ namespace Aditum.BaseElements
             }
         }
 
-        public void OnActivate()
+        public virtual void OnActivate()
         {
             throw new NotImplementedException();
         }
 
-        public void OnClick()
+        public virtual void OnClick()
         {
             throw new NotImplementedException();
         }
