@@ -83,5 +83,9 @@ namespace Aditum
             Orientation = ScreenOrientation.TopLeft;
         }
 
+        public virtual void Update(GameTime gameTime)
+        {
+            //throw 
+        }
     }
 }
