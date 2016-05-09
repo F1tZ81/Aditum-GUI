@@ -8,7 +8,6 @@ namespace Aditum.ElementInterfaces
 {
     public interface IActivatable
     {
-        //int ScreenIndex { get; set; }
 
         void OnActivate();
     }
