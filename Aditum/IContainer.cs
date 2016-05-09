@@ -12,8 +12,15 @@ namespace Aditum
     {
         Point Postion { get; set; }
         Screen ParentScreen { get; set; }
+        
 
         SpriteBatch Batch { get; }
+        GuiElement GetElement(string id);
+        GuiElement GetElement(int index);
+        
+        string ReturnActiveElementID();
+
         void Draw(SpriteBatch batch, GameTime gameTime);
+        void Update(GameTime gameTime);
     }
 }

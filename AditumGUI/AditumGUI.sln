@@ -3,24 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AditumGUI", "AditumGUI.csproj", "{40A81277-1D42-4E7B-B34D-B1DB1CEA7373}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aditum", "..\Aditum\Aditum.csproj", "{55178372-E567-41DD-A41A-B708A871234B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGame", "..\TestGame\TestGame.csproj", "{27E96FA6-C0CE-4AAE-956A-7C1BF2B37F45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{40A81277-1D42-4E7B-B34D-B1DB1CEA7373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40A81277-1D42-4E7B-B34D-B1DB1CEA7373}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40A81277-1D42-4E7B-B34D-B1DB1CEA7373}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40A81277-1D42-4E7B-B34D-B1DB1CEA7373}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55178372-E567-41DD-A41A-B708A871234B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55178372-E567-41DD-A41A-B708A871234B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55178372-E567-41DD-A41A-B708A871234B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{55178372-E567-41DD-A41A-B708A871234B}.Debug|x86.Build.0 = Debug|Any CPU
 		{55178372-E567-41DD-A41A-B708A871234B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55178372-E567-41DD-A41A-B708A871234B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55178372-E567-41DD-A41A-B708A871234B}.Release|x86.ActiveCfg = Release|Any CPU
+		{55178372-E567-41DD-A41A-B708A871234B}.Release|x86.Build.0 = Release|Any CPU
+		{27E96FA6-C0CE-4AAE-956A-7C1BF2B37F45}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{27E96FA6-C0CE-4AAE-956A-7C1BF2B37F45}.Debug|Any CPU.Build.0 = Debug|x86
+		{27E96FA6-C0CE-4AAE-956A-7C1BF2B37F45}.Debug|x86.ActiveCfg = Debug|x86
+		{27E96FA6-C0CE-4AAE-956A-7C1BF2B37F45}.Debug|x86.Build.0 = Debug|x86
+		{27E96FA6-C0CE-4AAE-956A-7C1BF2B37F45}.Release|Any CPU.ActiveCfg = Release|x86
+		{27E96FA6-C0CE-4AAE-956A-7C1BF2B37F45}.Release|x86.ActiveCfg = Release|x86
+		{27E96FA6-C0CE-4AAE-956A-7C1BF2B37F45}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

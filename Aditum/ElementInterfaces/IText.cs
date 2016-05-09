@@ -15,5 +15,7 @@ namespace Aditum.ElementInterfaces
         Color Base { get; set; }
         Color Selected { get; set; }
         Color Activated { get; set; }
+
+        void Draw(SpriteBatch spriteBatch, GameTime gameTime);
     }
 }

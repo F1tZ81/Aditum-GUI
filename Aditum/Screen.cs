@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace Aditum
@@ -9,20 +10,20 @@ namespace Aditum
         public bool Transpaenrt { get; set; }
         public bool Active { get; set; }
         private bool CleanUp { get; set; }
-        private List<GuiElement> elements;
 
-        private int CurrentIndex { get; set; }
+        public int CurrentIndex { get; set; }
 
         public GuiElement ActiveElement
         {
             get
             {
-                foreach (GuiElement currentEle in elements)
+                GuiElement tempEle = null;
+                foreach(IContainer currentCon in Containers)
                 {
-                    if (currentEle.Active) return currentEle;
+                    tempEle = currentCon.GetElement(CurrentIndex);
+                    if (tempEle != null) return tempEle;
                 }
-
-                return null;
+                return tempEle;
             }
         }
 
@@ -35,18 +36,7 @@ namespace Aditum
             CleanUp = false;
 
             CurrentIndex = 0;
-
-            elements = new List<GuiElement>();
-        }
-
-        public GuiElement GetElement (string id)
-        {
-            foreach(GuiElement currentElement in elements)
-            {
-                if (currentElement.ID == id) return currentElement;
-            }
-
-            return null;
+            Containers = new List<IContainer>();
         }
 
         public void MarkForCleanUp()
@@ -54,25 +44,9 @@ namespace Aditum
             CleanUp = true;
         }
 
-        protected void ActivateElementViaIndex(int index)
+        public void ActivateElementViaIndex(int index)
         {
-            foreach (GuiElement currentElemet in elements)
-            {
-                if (currentElemet.Index == index) currentElemet.Active = true;
-            }
-        }
 
-        protected string ReturnActiveElementID()
-        {
-            foreach (GuiElement currentElement in elements)
-            {
-                if (currentElement.Active == true)
-                {
-                    return currentElement.ID;
-                }
-            }
-
-            return "none";
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)
@@ -81,6 +55,19 @@ namespace Aditum
             {
                 currentCon.Draw(batch, gameTime);
             }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            foreach(IContainer currentContainer in Containers)
+            {
+                currentContainer.Update(gameTime);
+            }
+        }
+
+        public virtual IContainer AddContainer()
+        {
+            throw new NotImplementedException();
         }
     }
 }
