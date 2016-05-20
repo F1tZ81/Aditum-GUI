@@ -51,15 +51,15 @@
     <Compile Include="BaseElements\BaseScreen.cs" />
     <Compile Include="BaseElements\InteractiveImage.cs" />
     <Compile Include="BaseElements\TestElement.cs" />
-    <Compile Include="ElementInterfaces\IAdvanceDrawable.cs" />
-    <Compile Include="ElementInterfaces\IInnerRaster.cs" />
-    <Compile Include="ElementInterfaces\IRasterSheet.cs" />
-    <Compile Include="ElementInterfaces\IText.cs" />
+    <Compile Include="Interfaces\IAdvanceDrawable.cs" />
+    <Compile Include="Interfaces\IInnerRaster.cs" />
+    <Compile Include="Interfaces\IRasterSheet.cs" />
+    <Compile Include="Interfaces\IText.cs" />
     <Compile Include="GuiElement.cs" />
-    <Compile Include="ElementInterfaces\IActivatable.cs" />
-    <Compile Include="ElementInterfaces\IClickable.cs" />
-    <Compile Include="IContainer.cs" />
-    <Compile Include="ElementInterfaces\IRaster.cs" />
+    <Compile Include="Interfaces\IActivatable.cs" />
+    <Compile Include="Interfaces\IClickable.cs" />
+    <Compile Include="Interfaces\IContainer.cs" />
+    <Compile Include="Interfaces\IRaster.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen.cs" />
   </ItemGroup>
