@@ -13,5 +13,8 @@ namespace Aditum.BaseElements
         //{
         //    //this.Containers.Add(new )
         //}
+        public BaseScreen(IServiceProvider service) : base(service)
+        {
+        }
     }
 }

@@ -51,7 +51,9 @@
     <Compile Include="BaseElements\BaseScreen.cs" />
     <Compile Include="BaseElements\InteractiveImage.cs" />
     <Compile Include="BaseElements\TestElement.cs" />
+    <Compile Include="ElementInterfaces\IAdvanceDrawable.cs" />
     <Compile Include="ElementInterfaces\IInnerRaster.cs" />
+    <Compile Include="ElementInterfaces\IRasterSheet.cs" />
     <Compile Include="ElementInterfaces\IText.cs" />
     <Compile Include="GuiElement.cs" />
     <Compile Include="ElementInterfaces\IActivatable.cs" />

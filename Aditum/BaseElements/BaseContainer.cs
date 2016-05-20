@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
+using Aditum.ElementInterfaces;
 
 namespace Aditum.BaseElements
 {
@@ -12,6 +14,7 @@ namespace Aditum.BaseElements
     {
        
         List<GuiElement> Elements { get; set; }
+        public string ID { get; set; }
 
         public SpriteBatch Batch
         {
@@ -25,10 +28,26 @@ namespace Aditum.BaseElements
 
         public Point Postion { get; set; }
 
+        public ContentManager Contnet
+        {
+            get
+            {
+                return ParentScreen.Content;
+            }
+        }
+
+        public BaseContainer(Screen parentScreen, string iD)
+        {
+            ParentScreen = parentScreen;
+            Elements = new List<GuiElement>();
+        }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            throw new NotImplementedException();
+            foreach(GuiElement currentElement in Elements)
+            {
+                if (currentElement is IAdvanceDrawable) ((IAdvanceDrawable)currentElement).Draw(batch, gameTime);
+            }
         }
 
         public GuiElement GetElement(int index)
@@ -59,6 +78,13 @@ namespace Aditum.BaseElements
         public void Update(GameTime gameTime)
         {
             throw new NotImplementedException();
+        }
+
+        public GuiElement AddElement(GuiElement element)
+        {
+            element.SetContainer(this);
+            Elements.Add(element);
+            return element;
         }
     }
 }

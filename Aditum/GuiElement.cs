@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 
 namespace Aditum
 {
@@ -10,6 +12,16 @@ namespace Aditum
     public class GuiElement
     {
         /// <summary>
+        /// The path in content for the base ui sheet
+        /// </summary>
+        protected string BaseUIImagePath = "UIpack";
+
+        /// <summary>
+        /// The default UI Sprite sheet
+        /// </summary>
+        protected Texture2D BaseSheet;
+
+        /// <summary>
         /// The index of the current element
         /// </summary>
         protected int index = 0;
@@ -17,7 +29,7 @@ namespace Aditum
         /// <summary>
         /// A reference to the elements parent container 
         /// </summary>
-        private IContainer ParentContainer;
+        protected IContainer ParentContainer;
 
         /// <summary>
         /// Set if the element is set to active (currently selected element)
@@ -81,6 +93,14 @@ namespace Aditum
             Interactive = true;
             ParentContainer = ConRef;
             Orientation = ScreenOrientation.TopLeft;
+            if (ConRef != null) SetContainer(ConRef);
+        }
+
+        public virtual void SetContainer (IContainer conRef)
+        {
+            ParentContainer = conRef;
+            conRef.Contnet.RootDirectory = Directory.GetCurrentDirectory() + "\\Content";
+            BaseSheet = conRef.Contnet.Load<Texture2D>(BaseUIImagePath);
         }
 
         public virtual void Update(GameTime gameTime)

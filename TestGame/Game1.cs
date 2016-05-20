@@ -1,4 +1,5 @@
 ﻿using Aditum;
+using Aditum.BaseElements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -14,12 +15,13 @@ namespace TestGame
         SpriteBatch spriteBatch;
         Screen TestScreen;
 
+        KeyboardState PreviousStateKey;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            TestScreen = new Screen();
-            TestScreen.AddContainer()
+            //contain.
         }
 
         /// <summary>
@@ -44,7 +46,15 @@ namespace TestGame
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // we create our screen
+            TestScreen = new Screen(Content.ServiceProvider);
+
+            // add a container to add elements to
+            // we pass back a ref to we can mod it out side of the screen
+            IContainer contain = TestScreen.AddContainer("test");
+
+            // we add an element and once again pass a ref so we can mod the element
+            GuiElement testElement = contain.AddElement(new TestElement());
         }
 
         /// <summary>
@@ -66,6 +76,23 @@ namespace TestGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (Keyboard.GetState().IsKeyDown(Keys.A) && !PreviousStateKey.IsKeyDown(Keys.A))
+            {
+                // when we want to interact with a control from either in the screen our outside of the screen stack
+                // we call GetElement and return a ref
+                GuiElement tempEle = TestScreen.GetElement("Test");
+                if (tempEle.Visable == true)
+                {
+                    tempEle.Visable = false;
+                }
+                else
+                {
+                    tempEle.Visable = true;
+                }
+            }
+
+
+                PreviousStateKey = Keyboard.GetState();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -79,7 +106,10 @@ namespace TestGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            SpriteBatch batch = new SpriteBatch(GraphicsDevice);
+            batch.Begin();
+            TestScreen.Draw(batch, gameTime);
+            batch.End();
 
             base.Draw(gameTime);
         }

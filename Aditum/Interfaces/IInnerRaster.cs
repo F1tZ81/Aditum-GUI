@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Aditum.ElementInterfaces
 {
-    public interface IInnerRaster : IRaster
+    public interface IInnerRaster
     {
         Texture2D InnerImage { get; set; }
 
