@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Aditum.ElementInterfaces;
 
@@ -13,18 +8,35 @@ namespace Aditum.BaseElements
     {
         public Texture2D InnerImage { get; set; }
 
+        /// <summary>
+        /// Creates a fully rounded out element
+        /// </summary>
+        /// <param name="conf">the container</param>
+        /// <param name="index">the index of the element with in the screen</param>
+        /// <param name="sheet">the Texture to use as a sprite sheet</param>
+        /// <param name="baseImage">the base control definition</param>
+        /// <param name="selectedImage">the control definition for when the control is selected</param>
         public TestElement(IContainer conf, int index, Texture2D sheet, ControlDefination baseImage, ControlDefination selectedImage) : 
             base (conf, index, sheet, baseImage, selectedImage)
         {
             ID = "Test";
         }
 
+        /// <summary>
+        /// Creates a default Element with an assigned container
+        /// </summary>
+        /// <param name="conf"></param>
+        /// <param name="index"></param>
         public TestElement(IContainer conf, int index) : this (conf, index, null, null, null)
         {
             BaseImage = null;
             SelectedImage = null;
         }
 
+        /// <summary>
+        /// Creates a default Element with no assigned container
+        /// </summary>
+        /// <param name="index"></param>
         public TestElement(int index) : this(null, index, null, null, null)
         {
 

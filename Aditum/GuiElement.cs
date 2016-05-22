@@ -130,6 +130,12 @@ namespace Aditum
             return this;
         }
 
+        public GuiElement RealtivePOS(int x, int y)
+        {
+            RelativePostion = new Point(x, y);
+            return this;
+        }
+
         public virtual void SetContainer (IContainer conRef)
         {
             ParentContainer = conRef;

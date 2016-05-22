@@ -50,7 +50,7 @@ namespace Aditum.BaseElements
 
         private void OnAction(GameTime time)
         {
-            Console.WriteLine("OnAction Call for " + ID);
+            Console.WriteLine("OnAction Call for " + ID + " @ index " + Index);
         }
 
         public override void SetContainer(IContainer conRef)

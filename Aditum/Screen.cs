@@ -134,6 +134,72 @@ namespace Aditum
             }
         }
 
+        protected void NextIndex(SiblingDirection direction)
+        {
+            if (CurrentIndex == 0)
+            {
+                CurrentIndex = 1;
+                return;
+            }
+
+            GuiElement currentElement = GetElement(CurrentIndex);
+               
+            switch (direction)
+            {
+                case SiblingDirection.Up:
+                    if (currentElement.SiblingUp != 0)
+                    {
+                        CurrentIndex = currentElement.SiblingUp;
+                        currentElement.Active = false;
+                        ActivateElementViaIndex(CurrentIndex);
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                case SiblingDirection.Down:
+                    if (currentElement.SiblingDown != 0)
+                    {
+                        CurrentIndex = currentElement.SiblingDown;
+                        currentElement.Active = false;
+                        ActivateElementViaIndex(CurrentIndex);
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                case SiblingDirection.Right:
+                    if (currentElement.SiblingRight != 0)
+                    {
+                        CurrentIndex = currentElement.SiblingRight;
+                        currentElement.Active = false;
+                        ActivateElementViaIndex(CurrentIndex);
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                case SiblingDirection.Left:
+                    if (currentElement.SiblingLeft != 0)
+                    {
+                        CurrentIndex = currentElement.SiblingLeft;
+                        currentElement.Active = false;
+                        ActivateElementViaIndex(CurrentIndex);
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
+            }
+        }
+
         /// <summary>
         /// Base implantation of a screen draw
         /// </summary>
@@ -153,6 +219,9 @@ namespace Aditum
         /// <param name="gameTime"></param>
         public virtual void Update(GameTime gameTime)
         {
+            // Update the Active element based on the currentindex
+            if (CurrentIndex != 0 && !GetElement(CurrentIndex).Active) GetElement(CurrentIndex).Active = true;
+
             // run all container updates (should not directly interact with elements
             foreach (IContainer currentContainer in Containers)
             {
@@ -190,6 +259,31 @@ namespace Aditum
                 }
             }
 
+            // Check for movement to new element
+            if((currentKeyState.IsKeyDown(Keys.Up) && !LastKeyState.IsKeyDown(Keys.Up)) ||
+                (currentPadState.IsButtonDown(Buttons.DPadUp) && !LastPadState.IsButtonDown(Buttons.DPadUp)))
+            {
+                NextIndex(SiblingDirection.Up);
+            }
+
+            if ((currentKeyState.IsKeyDown(Keys.Down) && !LastKeyState.IsKeyDown(Keys.Down)) ||
+                (currentPadState.IsButtonDown(Buttons.DPadDown) && !LastPadState.IsButtonDown(Buttons.DPadDown)))
+            {
+                NextIndex(SiblingDirection.Down);
+            }
+
+            if ((currentKeyState.IsKeyDown(Keys.Left) && !LastKeyState.IsKeyDown(Keys.Left)) ||
+                (currentPadState.IsButtonDown(Buttons.DPadLeft) && !LastPadState.IsButtonDown(Buttons.DPadLeft)))
+            {
+                NextIndex(SiblingDirection.Left);
+            }
+
+            if ((currentKeyState.IsKeyDown(Keys.Right) && !LastKeyState.IsKeyDown(Keys.Right)) ||
+                (currentPadState.IsButtonDown(Buttons.DPadRight) && !LastPadState.IsButtonDown(Buttons.DPadRight)))
+            {
+                NextIndex(SiblingDirection.Right);
+            }
+
             LastKeyState = currentKeyState;
             LastPadState = currentPadState;
             LastMosueState = currentMouseState;
@@ -207,4 +301,10 @@ namespace Aditum
         public Rectangle Bounds { get; set; }
         public float Scale { get; set; }
     }
+
+    public enum SiblingDirection
+    {
+        Up, Down, Left, Right
+    }
+
 }

@@ -55,7 +55,10 @@ namespace TestGame
 
             // we add an element and once again pass a ref so we can mod the element
             // we also set the siblings right after creation
-            GuiElement testElement = contain.AddElement(new TestElement(0).Siblings(0,0,0,0));
+            GuiElement testElement = contain.AddElement(new TestElement(1)
+                .Siblings(2,2,0,0));
+            GuiElement testElement2 = contain.AddElement(new TestElement(2)
+                .Siblings(1, 1, 0, 0).RealtivePOS(0, 50));
         }
 
         /// <summary>
