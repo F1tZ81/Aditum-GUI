@@ -11,6 +11,7 @@ namespace Aditum
 
     public class GuiElement
     {
+        #region Properties
         /// <summary>
         /// The path in content for the base ui sheet
         /// </summary>
@@ -52,6 +53,20 @@ namespace Aditum
             }
         }
 
+        // Siblings
+        // these simple indexes are used to 
+        // navigate to the next control on
+        // a screen in any of the basic 
+        // 4 directions
+        public int SiblingUp { get { return SibUp; } }
+        private int SibUp;
+        public int SiblingDown { get { return SibDown; } }
+        private int SibDown;
+        public int SiblingRight { get { return SibRight; } }
+        private int SibRight;
+        public int SiblingLeft { get { return SibLeft; } }
+        private int SibLeft;
+
         /// <summary>
         /// The relative location of the element from the parent container 
         /// </summary>
@@ -83,8 +98,9 @@ namespace Aditum
         /// If it is not interactive than it can not be manipulated by input.
         /// </summary>
         protected bool Interactive { get; set; }
+        #endregion
 
-        public GuiElement(IContainer ConRef)
+        public GuiElement(IContainer ConRef, int index)
         {
             Active = false;
             ID = "Unknown";
@@ -94,6 +110,24 @@ namespace Aditum
             ParentContainer = ConRef;
             Orientation = ScreenOrientation.TopLeft;
             if (ConRef != null) SetContainer(ConRef);
+            this.index = index;
+        }
+
+        /// <summary>
+        /// Sets the sibling elements of the current element
+        /// </summary>
+        /// <param name="up">index of the element above</param>
+        /// <param name="down">index of the element below</param>
+        /// <param name="left">index of the element to the left</param>
+        /// <param name="right">index of the element to the right</param>
+        /// <returns></returns>
+        public GuiElement Siblings(int up, int down, int left, int right)
+        {
+            SibUp = up;
+            SibDown = down;
+            SibLeft = left;
+            SibRight = right;
+            return this;
         }
 
         public virtual void SetContainer (IContainer conRef)

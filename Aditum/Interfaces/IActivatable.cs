@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
 
 namespace Aditum.ElementInterfaces
 {
+    /// <summary>
+    /// Item can be activated via gamepad button or keyboard press
+    /// </summary>
     public interface IActivatable
     {
 
-        void OnActivate();
+        void OnActivate(GameTime time);
     }
 }

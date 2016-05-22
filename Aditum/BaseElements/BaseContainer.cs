@@ -7,22 +7,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Aditum.ElementInterfaces;
+using Aditum.Interfaces;
 
 namespace Aditum.BaseElements
 {
     public class BaseContainer : IContainer
     {
-       
+        #region Properties
         List<GuiElement> Elements { get; set; }
-        public string ID { get; set; }
 
-        public SpriteBatch Batch
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public string ID { get; set; }
 
         public Screen ParentScreen { get; set; }
 
@@ -36,20 +30,22 @@ namespace Aditum.BaseElements
             }
         }
 
+        public SpriteBatch Batch
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+        #endregion
+
         public BaseContainer(Screen parentScreen, string iD)
         {
             ParentScreen = parentScreen;
             Elements = new List<GuiElement>();
         }
 
-        public void Draw(SpriteBatch batch, GameTime gameTime)
-        {
-            foreach(GuiElement currentElement in Elements)
-            {
-                if (currentElement is IAdvanceDrawable) ((IAdvanceDrawable)currentElement).Draw(batch, gameTime);
-            }
-        }
-
+        #region ElementHandling
         public GuiElement GetElement(int index)
         {
             foreach(GuiElement currentEle in Elements)
@@ -75,16 +71,33 @@ namespace Aditum.BaseElements
             throw new NotImplementedException();
         }
 
-        public void Update(GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
-
         public GuiElement AddElement(GuiElement element)
         {
             element.SetContainer(this);
             Elements.Add(element);
             return element;
+        }
+        #endregion
+
+        public void Draw(SpriteBatch batch, GameTime gameTime)
+        {
+            // If we have a contior with a background draw it
+            if(this is IBackground)
+            {
+                batch.Draw(((IBackground)this).SheetImage, new Vector2(Postion.X, Postion.Y), ((IBackground)this).BackImage.Bounds,
+                    Color.White, 0f, Vector2.Zero, ((IBackground)this).BackImage.Scale, SpriteEffects.None, 0f);
+            }
+
+            // iterate though the elements and draw them
+            foreach (GuiElement currentElement in Elements)
+            {
+                if (currentElement is IAdvanceDrawable) ((IAdvanceDrawable)currentElement).Draw(batch, gameTime);
+            }
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            //throw new NotImplementedException();
         }
     }
 }

@@ -2,10 +2,13 @@
 
 namespace Aditum.ElementInterfaces
 {
+    /// <summary>
+    /// Item can be clicked on
+    /// </summary>
     public interface IClickable
     {
         Rectangle BoundingBox { get; set; }
 
-        void OnClick();
+        void OnClick(GameTime time);
     }
 }

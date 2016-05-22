@@ -13,19 +13,19 @@ namespace Aditum.BaseElements
     {
         public Texture2D InnerImage { get; set; }
 
-        public TestElement(IContainer conf, Texture2D sheet, ControlDefination baseImage, ControlDefination selectedImage) : 
-            base (conf, sheet, baseImage, selectedImage)
+        public TestElement(IContainer conf, int index, Texture2D sheet, ControlDefination baseImage, ControlDefination selectedImage) : 
+            base (conf, index, sheet, baseImage, selectedImage)
         {
-            this.ID = "Test";
+            ID = "Test";
         }
 
-        public TestElement(IContainer conf) : this (conf, null, null, null)
+        public TestElement(IContainer conf, int index) : this (conf, index, null, null, null)
         {
             BaseImage = null;
             SelectedImage = null;
         }
 
-        public TestElement() : this(null, null, null, null)
+        public TestElement(int index) : this(null, index, null, null, null)
         {
 
         }

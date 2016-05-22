@@ -54,7 +54,8 @@ namespace TestGame
             IContainer contain = TestScreen.AddContainer("test");
 
             // we add an element and once again pass a ref so we can mod the element
-            GuiElement testElement = contain.AddElement(new TestElement());
+            // we also set the siblings right after creation
+            GuiElement testElement = contain.AddElement(new TestElement(0).Siblings(0,0,0,0));
         }
 
         /// <summary>
@@ -92,8 +93,8 @@ namespace TestGame
             }
 
 
-                PreviousStateKey = Keyboard.GetState();
-            // TODO: Add your update logic here
+            PreviousStateKey = Keyboard.GetState();
+            TestScreen.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -104,7 +105,7 @@ namespace TestGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             SpriteBatch batch = new SpriteBatch(GraphicsDevice);
             batch.Begin();

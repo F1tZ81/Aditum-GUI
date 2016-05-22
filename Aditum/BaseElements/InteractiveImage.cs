@@ -1,24 +1,23 @@
 ﻿using Aditum.ElementInterfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Aditum.Interfaces;
 
 namespace Aditum.BaseElements
 {
     public class InteractiveImage : GuiElement, IClickable, IActivatable, IRasterSheet
     {
+        #region Properties
         public Texture2D SheetImage { get; set; }
         public ControlDefination ActivatedGUI { get; set; }
         public ControlDefination BaseImage { get; set; }
         public ControlDefination SelectedImage { get; set; }
         public Rectangle BoundingBox { get; set; }
+        #endregion
 
-        public InteractiveImage(IContainer conRef, Texture2D sheetTexture, ControlDefination baseImage)
-            : base(conRef)
+        public InteractiveImage(IContainer conRef, int index, Texture2D sheetTexture, ControlDefination baseImage)
+            : base(conRef, index)
         {
             RelativePostion = new Point(0, 0);
             
@@ -34,35 +33,24 @@ namespace Aditum.BaseElements
             }
         }
 
-        public InteractiveImage(IContainer conRef, Texture2D sheetTexture, ControlDefination baseImage, ControlDefination selectedImage) : this(conRef, sheetTexture, baseImage)
+        public InteractiveImage(IContainer conRef, int index, Texture2D sheetTexture, ControlDefination baseImage, ControlDefination selectedImage) : this(conRef, index, sheetTexture, baseImage)
         {
             this.SelectedImage = selectedImage;
         }
 
-        public virtual void Draw(SpriteBatch sb, GameTime gameTime)
+        public virtual void OnActivate(GameTime time)
         {
-            if(Visable)
-            {
-                if(!Active)
-                {
-                    sb.Draw(SheetImage, new Vector2(ActualPosition.X, ActualPosition.Y), BaseImage.Bounds, Color.White, 0f, Vector2.Zero, BaseImage.Scale, SpriteEffects.None, 0f);
-                }
-                else
-                {
-                    sb.Draw(SheetImage, new Vector2(ActualPosition.X, ActualPosition.Y), SelectedImage.Bounds, Color.White, 0f, Vector2.Zero, SelectedImage.Scale, SpriteEffects.None, 0f);
-                
-                }
-            }
+            OnAction(time);
         }
 
-        public virtual void OnActivate()
+        public virtual void OnClick(GameTime time)
         {
-            throw new NotImplementedException();
+            OnAction(time);
         }
 
-        public virtual void OnClick()
+        private void OnAction(GameTime time)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("OnAction Call for " + ID);
         }
 
         public override void SetContainer(IContainer conRef)
@@ -74,6 +62,22 @@ namespace Aditum.BaseElements
             if (ActivatedGUI == null) ActivatedGUI = conRef.ParentScreen.GetControlDef("activated");
             if (SheetImage == null) SheetImage = BaseSheet;
             BoundingBox = new Rectangle(ActualPosition.X, ActualPosition.Y, BaseImage.Bounds.Width, BaseImage.Bounds.Height);
+        }
+
+        public virtual void Draw(SpriteBatch sb, GameTime gameTime)
+        {
+            if (Visable)
+            {
+                if (!Active)
+                {
+                    sb.Draw(SheetImage, new Vector2(ActualPosition.X, ActualPosition.Y), BaseImage.Bounds, Color.White, 0f, Vector2.Zero, BaseImage.Scale, SpriteEffects.None, 0f);
+                }
+                else
+                {
+                    sb.Draw(SheetImage, new Vector2(ActualPosition.X, ActualPosition.Y), SelectedImage.Bounds, Color.White, 0f, Vector2.Zero, SelectedImage.Scale, SpriteEffects.None, 0f);
+
+                }
+            }
         }
 
     }

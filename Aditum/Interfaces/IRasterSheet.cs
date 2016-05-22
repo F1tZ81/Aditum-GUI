@@ -6,8 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aditum.ElementInterfaces
+namespace Aditum.Interfaces
 {
+    /// <summary>
+    /// A drawable image using a Raster image sprite sheet
+    /// </summary>
     public interface IRasterSheet : IAdvanceDrawable
     {
         Texture2D SheetImage { get; set; }
