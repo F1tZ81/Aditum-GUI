@@ -4,6 +4,9 @@ using System.IO;
 
 namespace Aditum
 {
+    /// <summary>
+    /// Orientation of the elements and containers with in a screen
+    /// </summary>
     public enum ScreenOrientation
     {
         LeftCenter, RightCenter, Center, Top, TopRight, TopLeft, Bottom, LeftBottom, RightBottom
@@ -100,6 +103,10 @@ namespace Aditum
         protected bool Interactive { get; set; }
         #endregion
 
+        /// <summary>
+        /// Creates a Gui element object
+        /// </summary>
+        /// <param name="index">the index with in the screen</param>
         public GuiElement(int index)
         {
             Active = false;
@@ -128,12 +135,24 @@ namespace Aditum
             return this;
         }
 
+        /// <summary>
+        /// Sets the relative Position of the element 
+        /// This is an offset of the container position 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public GuiElement RealtivePOS(int x, int y)
         {
             RelativePostion = new Point(x, y);
             return this;
         }
 
+        /// <summary>
+        /// This is a simple call back used by the container to set the parent 
+        /// container and set a any dependent defaults
+        /// </summary>
+        /// <param name="conRef"></param>
         public virtual void SetContainer (IContainer conRef)
         {
             ParentContainer = conRef;
