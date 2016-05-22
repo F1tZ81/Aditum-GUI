@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace Aditum
 {
-    public class Screen
+    public class Screen : IDisposable
     {
         #region Properties
         public bool Transpaenrt { get; set; }
@@ -287,6 +287,17 @@ namespace Aditum
             LastKeyState = currentKeyState;
             LastPadState = currentPadState;
             LastMosueState = currentMouseState;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        protected virtual void Dispose(bool switchBool)
+        {
+            Content.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 

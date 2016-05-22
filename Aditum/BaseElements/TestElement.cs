@@ -16,8 +16,8 @@ namespace Aditum.BaseElements
         /// <param name="sheet">the Texture to use as a sprite sheet</param>
         /// <param name="baseImage">the base control definition</param>
         /// <param name="selectedImage">the control definition for when the control is selected</param>
-        public TestElement(IContainer conf, int index, Texture2D sheet, ControlDefination baseImage, ControlDefination selectedImage) : 
-            base (conf, index, sheet, baseImage, selectedImage)
+        public TestElement(int index, Texture2D sheet, ControlDefination baseImage, ControlDefination selectedImage) : 
+            base (index, sheet, baseImage, selectedImage)
         {
             ID = "Test";
         }
@@ -27,7 +27,7 @@ namespace Aditum.BaseElements
         /// </summary>
         /// <param name="conf"></param>
         /// <param name="index"></param>
-        public TestElement(IContainer conf, int index) : this (conf, index, null, null, null)
+        public TestElement(IContainer conf, int index) : this (index, null, null, null)
         {
             BaseImage = null;
             SelectedImage = null;
@@ -37,7 +37,7 @@ namespace Aditum.BaseElements
         /// Creates a default Element with no assigned container
         /// </summary>
         /// <param name="index"></param>
-        public TestElement(int index) : this(null, index, null, null, null)
+        public TestElement(int index) : this(index, null, null, null)
         {
 
         }

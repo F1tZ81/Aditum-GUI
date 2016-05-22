@@ -15,7 +15,6 @@ namespace Aditum
         Screen ParentScreen { get; set; }
         string ID { get; set; }
         
-        SpriteBatch Batch { get; }
         GuiElement GetElement(string id);
         GuiElement GetElement(int index);
 

@@ -16,8 +16,8 @@ namespace Aditum.BaseElements
         public Rectangle BoundingBox { get; set; }
         #endregion
 
-        public InteractiveImage(IContainer conRef, int index, Texture2D sheetTexture, ControlDefination baseImage)
-            : base(conRef, index)
+        public InteractiveImage(int index, Texture2D sheetTexture, ControlDefination baseImage)
+            : base(index)
         {
             RelativePostion = new Point(0, 0);
             
@@ -33,7 +33,7 @@ namespace Aditum.BaseElements
             }
         }
 
-        public InteractiveImage(IContainer conRef, int index, Texture2D sheetTexture, ControlDefination baseImage, ControlDefination selectedImage) : this(conRef, index, sheetTexture, baseImage)
+        public InteractiveImage(int index, Texture2D sheetTexture, ControlDefination baseImage, ControlDefination selectedImage) : this(index, sheetTexture, baseImage)
         {
             this.SelectedImage = selectedImage;
         }

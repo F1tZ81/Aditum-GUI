@@ -30,13 +30,6 @@ namespace Aditum.BaseElements
             }
         }
 
-        public SpriteBatch Batch
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
         #endregion
 
         public BaseContainer(Screen parentScreen, string iD)

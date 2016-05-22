@@ -100,16 +100,16 @@ namespace Aditum
         protected bool Interactive { get; set; }
         #endregion
 
-        public GuiElement(IContainer ConRef, int index)
+        public GuiElement(int index)
         {
             Active = false;
             ID = "Unknown";
             RelativePostion = new Point(0, 0);
             Visable = true;
             Interactive = true;
-            ParentContainer = ConRef;
+            //ParentContainer = ConRef;
             Orientation = ScreenOrientation.TopLeft;
-            if (ConRef != null) SetContainer(ConRef);
+            //if (ConRef != null) SetContainer(ConRef);
             this.index = index;
         }
 
