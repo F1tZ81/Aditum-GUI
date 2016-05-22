@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 
 namespace Aditum
@@ -43,9 +44,10 @@ namespace Aditum
         protected GamePadState LastPadState { get; set; }
         #endregion
 
-        public Screen(IServiceProvider service)
+        public Screen(IServiceProvider service, string contentDir = null)
         {
             Content = new ContentManager(service);
+            if (contentDir == null) Content.RootDirectory = Directory.GetCurrentDirectory() + "\\Content";
 
             ControlDefinations = new List<ControlDefination>();
 

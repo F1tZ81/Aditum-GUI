@@ -107,9 +107,7 @@ namespace Aditum
             RelativePostion = new Point(0, 0);
             Visable = true;
             Interactive = true;
-            //ParentContainer = ConRef;
             Orientation = ScreenOrientation.TopLeft;
-            //if (ConRef != null) SetContainer(ConRef);
             this.index = index;
         }
 
@@ -139,8 +137,7 @@ namespace Aditum
         public virtual void SetContainer (IContainer conRef)
         {
             ParentContainer = conRef;
-            conRef.Contnet.RootDirectory = Directory.GetCurrentDirectory() + "\\Content";
-            BaseSheet = conRef.Contnet.Load<Texture2D>(BaseUIImagePath);
+            if(BaseSheet == null) BaseSheet = conRef.Contnet.Load<Texture2D>(BaseUIImagePath);
         }
 
         public virtual void Update(GameTime gameTime)
