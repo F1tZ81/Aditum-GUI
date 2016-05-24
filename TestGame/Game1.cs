@@ -1,5 +1,6 @@
 ﻿using Aditum;
 using Aditum.BaseElements;
+using Aditum.ElementInterfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -59,6 +60,11 @@ namespace TestGame
                 .Siblings(2,2,0,0));
             GuiElement testElement2 = contain.AddElement(new TestElement(2)
                 .Siblings(1, 1, 0, 0).RealtivePOS(0, 50));
+            GuiElement panelElement = contain.AddElement(new BasePanel(3))
+                .RealtivePOS(0, 100);
+            ((IInnerRaster)panelElement).SetInnerScale(0.23f)
+                .SetRelativePosition(new Point { X = 30, Y = 10 })
+                .InnerImage = Content.Load<Texture2D>("Metal-House-Piston-Robot");
         }
 
         /// <summary>

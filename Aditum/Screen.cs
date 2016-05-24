@@ -61,6 +61,7 @@ namespace Aditum
             ControlDefinations.Add(new ControlDefination { Bounds = new Rectangle(4, 56, 68, 17), Name = "base", Scale = 2f });
             ControlDefinations.Add(new ControlDefination { Bounds = new Rectangle(4, 40, 65, 16), Name = "selected", Scale = 2f });
             ControlDefinations.Add(new ControlDefination { Bounds = new Rectangle(0, 0, 10, 10), Name = "activated" });
+            ControlDefinations.Add(new ControlDefination { Bounds = new Rectangle(7, 77, 62, 62), Name = "panel", Scale = 2f });
         }
 
         #region AddGetSetRemove

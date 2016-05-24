@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,11 @@ namespace Aditum.ElementInterfaces
     public interface IInnerRaster
     {
         Texture2D InnerImage { get; set; }
+        float InnerImageScale { get; }
+        Point RelativePosition { get; }
+        GuiElement SetInnerImage(Texture2D innerImage);
+        IInnerRaster SetInnerScale(float scale);
+        IInnerRaster SetRelativePosition(Point pos);
 
-        void SetInnerImage(Texture2D innerImage);
     }
 }

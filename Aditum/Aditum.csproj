@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseElements\BaseContainer.cs" />
+    <Compile Include="BaseElements\BasePanel.cs" />
     <Compile Include="BaseElements\BaseScreen.cs" />
     <Compile Include="BaseElements\InteractiveImage.cs" />
     <Compile Include="BaseElements\TestElement.cs" />

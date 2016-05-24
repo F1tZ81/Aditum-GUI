@@ -4,10 +4,8 @@ using Aditum.ElementInterfaces;
 
 namespace Aditum.BaseElements
 {
-    public class TestElement : InteractiveImage, IInnerRaster
+    public class TestElement : InteractiveImage
     {
-        public Texture2D InnerImage { get; set; }
-
         /// <summary>
         /// Creates a fully rounded out element
         /// </summary>
@@ -42,19 +40,9 @@ namespace Aditum.BaseElements
 
         }
 
-        public void SetInnerImage(Texture2D innerImage)
-        {
-            InnerImage = innerImage;
-        }
-
         public override void Draw(SpriteBatch sb, GameTime gameTime)
         {
             base.Draw(sb, gameTime);
-
-            if (InnerImage != null)
-            {
-                sb.Draw(InnerImage, new Vector2(ActualPosition.X, ActualPosition.Y), Color.White);
-            }
         }
 
     }

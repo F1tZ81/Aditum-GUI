@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Metal-House-Piston-Robot.jpg" />
     <Content Include="Content\UIpack.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
@@ -63,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Content\Metal-House-Piston-Robot.xnb" />
     <None Include="Content\UIpack.xnb" />
     <None Include="packages.config" />
   </ItemGroup>
