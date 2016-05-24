@@ -17,6 +17,7 @@ namespace Aditum
         
         GuiElement GetElement(string id);
         GuiElement GetElement(int index);
+        GuiElement[] GetElements();
 
         ContentManager Contnet { get; }
 

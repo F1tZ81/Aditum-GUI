@@ -97,6 +97,25 @@ namespace Aditum
             return null;
         }
 
+        public GuiElement GetClickedElement(Point pos)
+        {
+            foreach (IContainer currentContainer in Containers)
+            {
+                foreach (GuiElement currentEle in currentContainer.GetElements())
+                {
+                    if(currentEle is IClickable)
+                    {
+                        if(((IClickable)currentEle).BoundingBox.Contains(pos))
+                        {
+                            return currentEle;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public virtual IContainer AddContainer(string iD)
         {
             IContainer tempBase = new BaseContainer(this, iD);
@@ -222,6 +241,7 @@ namespace Aditum
         /// <param name="gameTime"></param>
         public virtual void Update(GameTime gameTime)
         {
+
             // Update the Active element based on the currentindex
             if (CurrentIndex != 0 && !GetElement(CurrentIndex).Active) GetElement(CurrentIndex).Active = true;
 
@@ -252,13 +272,14 @@ namespace Aditum
             if (currentMouseState.LeftButton == ButtonState.Pressed && LastMosueState.LeftButton != ButtonState.Pressed)
             {
                 // make sure this element supports that type of interaction
-                if (GetElement(CurrentIndex) is IClickable)
+                GuiElement clickEle = GetClickedElement(currentMouseState.Position);
+                if (clickEle != null)
                 {
                     // check if the mouse is over the bounding box of the control
-                    if (((IClickable)GetElement(CurrentIndex)).BoundingBox.Contains(currentMouseState.X, currentMouseState.Y))
-                    {
+                    //if (((IClickable)GetElement(CurrentIndex)).BoundingBox.Contains(currentMouseState.X, currentMouseState.Y))
+                    //{
                         ((IClickable)GetElement(CurrentIndex)).OnClick(gameTime);
-                    }
+                    //}
                 }
             }
 

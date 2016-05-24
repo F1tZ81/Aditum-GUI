@@ -48,7 +48,7 @@ namespace Aditum.BaseElements
             OnAction(time);
         }
 
-        private void OnAction(GameTime time)
+        protected void OnAction(GameTime time)
         {
             Console.WriteLine("OnAction Call for " + ID + " @ index " + Index);
         }

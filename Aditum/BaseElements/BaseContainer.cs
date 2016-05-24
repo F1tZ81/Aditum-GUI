@@ -59,6 +59,11 @@ namespace Aditum.BaseElements
             return null;
         }
 
+        public GuiElement[] GetElements()
+        {
+            return Elements.ToArray();
+        }
+
         public string ReturnActiveElementID()
         {
             throw new NotImplementedException();
